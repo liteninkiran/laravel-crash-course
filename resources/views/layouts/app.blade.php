@@ -7,7 +7,31 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body>
+    <body class="bg-gray-200">
+
+        {{-- Navbar --}}
+        <nav class="p-6 bg-white flex justify-between mb-6">
+
+            {{-- LHS Links --}}
+            <ul class="flex items-center">
+                <li><a href="/" class="p-3">Home</a></li>
+                <li><a href="/" class="p-3">Dashboard</a></li>
+                <li><a href="/" class="p-3">Post</a></li>
+            </ul>
+
+            {{-- RHS Links --}}
+            <ul class="flex items-center">
+                <li><a href="/" class="p-3">Kiran Anand</a></li>
+                <li><a href="/" class="p-3">Login</a></li>
+                <li><a href="/" class="p-3">Regsiter</a></li>
+                <li><a href="/" class="p-3">Logout</a></li>
+            </ul>
+
+        </nav>
+
+        {{-- Content --}}
         @yield('content')
+
     </body>
+
 </html>
