@@ -21,10 +21,15 @@
 
             {{-- RHS Links --}}
             <ul class="flex items-center">
-                <li><a href="/" class="p-3">Kiran Anand</a></li>
-                <li><a href="/" class="p-3">Login</a></li>
-                <li><a href="{{ route('register') }}" class="p-3">Regsiter</a></li>
-                <li><a href="/" class="p-3">Logout</a></li>
+                @auth
+                    <li><a href="/" class="p-3">Kiran Anand</a></li>
+                    <li><a href="/" class="p-3">Login</a></li>
+                @endauth
+
+                @guest
+                    <li><a href="{{ route('register') }}" class="p-3">Regsiter</a></li>
+                    <li><a href="/" class="p-3">Logout</a></li>
+                @endguest
             </ul>
 
         </nav>
