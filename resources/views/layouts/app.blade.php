@@ -23,7 +23,7 @@
             <ul class="flex items-center">
                 @auth
                     <li><a href="/" class="p-3">Kiran Anand</a></li>
-                    <li><a href="/" class="p-3">Login</a></li>
+                    <li><a href="{{ route('login') }}" class="p-3">Login</a></li>
                 @endauth
 
                 @guest
