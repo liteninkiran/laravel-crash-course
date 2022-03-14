@@ -9,6 +9,10 @@ use App\Models\User;
 
 class RegisterController extends Controller
 {
+    public function __construct() {
+        $this->middleware(['guest']);
+    }
+
     /**
      * Display a listing of the resource.
      *
