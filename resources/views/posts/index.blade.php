@@ -48,13 +48,25 @@
             @if($posts->isEmpty())
                 <p>No posts :(</p>
             @else
+
+                {{-- Loop Through Posts --}}
                 @foreach($posts as $post)
                     <div class="mb-4">
+                        {{-- User's Name --}}
                         <a href="" class="font-bold">{{ $post->user->name }}</a>
+
+                        {{-- Date Posted --}}
                         <span class="text-gray-600 text-sm">{{ $post->created_at->diffForHumans() }}</span>
+
+                        {{-- Post Body --}}
                         <p class="mb-2">{{ $post->body }}</p>
                     </div>
+
                 @endforeach
+
+                {{-- Pagination Links --}}
+                {{ $posts->links() }}
+
             @endif
 
         </div>

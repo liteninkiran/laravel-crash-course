@@ -13,7 +13,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->paginate(env('PAGINATE_LIMIT'));
         return view('posts.index', compact('posts'));
     }
 
