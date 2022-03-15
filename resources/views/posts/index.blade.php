@@ -59,7 +59,11 @@
                         <span class="text-gray-600 text-sm">{{ $post->created_at->diffForHumans() }}</span>
 
                         {{-- Post Body --}}
-                        <p class="mb-2">{{ $post->body }}</p>
+                        @if($post->body != strip_tags($post->body))
+                            <p class="mb-2">{!! $post->body !!}</p>
+                        @else
+                            <p class="mb-2">{{ $post->body }}</p>
+                        @endif
                     </div>
 
                 @endforeach
