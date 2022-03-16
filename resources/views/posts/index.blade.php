@@ -52,6 +52,7 @@
                 {{-- Loop Through Posts --}}
                 @foreach($posts as $post)
                     <div class="mb-4">
+
                         {{-- User's Name --}}
                         <a href="" class="font-bold">{{ $post->user->name }}</a>
 
@@ -64,8 +65,33 @@
                         @else
                             <p class="mb-2">{{ $post->body }}</p>
                         @endif
-                    </div>
 
+                        {{-- Like / Unlike --}}
+                        <div class="flex items-center">
+
+                            {{-- Unlike --}}
+                            @if($post->likedBy(auth()->user()))
+                                <form action="{{ route('post.likes', $post->id) }}" method="POST" class="mr-1">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-blue-500">Unlike</button>
+                                </form>
+                            {{-- Like --}}
+                            @else
+                                <form action="{{ route('post.likes', $post->id) }}" method="POST" class="mr-1">
+                                    @csrf
+                                    <button type="submit" class="text-blue-500">Like</button>
+                                </form>
+                            @endif
+
+                            {{-- Like Count --}}
+                            @if($post->likes->count() > 0)
+                                <span>{{ $post->likes->count() }} {{ Str::plural('like', $post->likes->count()) }}</span>
+                            @endif
+
+                        </div>
+
+                    </div>
                 @endforeach
 
                 {{-- Pagination Links --}}
