@@ -20,7 +20,7 @@ class UserFactory extends Factory
         $firstName = rand(1, 100) > 50 ? $this->faker->firstNameMale() : $this->faker->firstNameFemale();
         $lastName = $this->faker->lastName();
         $fullName = $firstName . ' ' . $lastName;
-        $userName = $firstName . '.' . $lastName . rand(100, 999);
+        $userName = strtolower($firstName . '.' . $lastName) . '.' . rand(100, 999);
 
         return [
             'name' => $fullName,

@@ -54,7 +54,7 @@
                     <div class="mb-4">
 
                         {{-- User's Name --}}
-                        <a href="" class="font-bold">{{ $post->user->name }}</a>
+                        <a href="{{ route('users.posts', $post->user) }}" class="font-bold">{{ $post->user->name }}</a>
 
                         {{-- Date Posted --}}
                         <span class="text-gray-600 text-sm">{{ $post->created_at->diffForHumans() }}</span>
