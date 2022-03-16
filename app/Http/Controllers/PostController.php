@@ -40,4 +40,24 @@ class PostController extends Controller
         // Re-direct
         return back();
     }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Post $post
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Post $post)
+    {
+        $user = auth()->user();
+        // Check user is deleting their own post
+        if ($post->user_id !== $user->id) {
+            return redirect('/posts')->with('error', 'Unauthorised Access');
+        }
+
+        // Delete the post
+        $post->delete();
+
+        // Re-direct
+        return back();
+    }
 }

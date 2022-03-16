@@ -50,4 +50,5 @@ class PostLikeController extends Controller
 
         // Re-direct
         return back();
-    }}
+    }
+}

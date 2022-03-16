@@ -66,32 +66,42 @@
                             <p class="mb-2">{{ $post->body }}</p>
                         @endif
 
-                        {{-- Like / Unlike --}}
-                        @auth
-                            <div class="flex items-center">
+                        {{-- Delete Post --}}
+                        <div>
+                            <form action="{{ route('posts.destroy', $post) }}" method="POST" class="mr-1">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-blue-500">Delete</button>
+                            </form>
+                        </div>
 
+                        {{-- Like / Unlike --}}
+                        <div class="flex items-center">
+
+                            @auth
                                 {{-- Unlike --}}
                                 @if($post->likedBy(auth()->user()))
-                                    <form action="{{ route('post.likes', $post->id) }}" method="POST" class="mr-1">
+                                    <form action="{{ route('post.likes', $post) }}" method="POST" class="mr-1">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-blue-500">Unlike</button>
                                     </form>
                                 {{-- Like --}}
                                 @else
-                                    <form action="{{ route('post.likes', $post->id) }}" method="POST" class="mr-1">
+                                    <form action="{{ route('post.likes', $post) }}" method="POST" class="mr-1">
                                         @csrf
                                         <button type="submit" class="text-blue-500">Like</button>
                                     </form>
                                 @endif
 
-                                {{-- Like Count --}}
-                                @if($post->likes->count() > 0)
-                                    <span>{{ $post->likes->count() }} {{ Str::plural('like', $post->likes->count()) }}</span>
-                                @endif
+                            @endauth
 
-                            </div>
-                        @endauth
+                            {{-- Like Count --}}
+                            @if($post->likes->count() > 0)
+                                <span>{{ $post->likes->count() }} {{ Str::plural('like', $post->likes->count()) }}</span>
+                            @endif
+
+                        </div>
 
                     </div>
                 @endforeach
