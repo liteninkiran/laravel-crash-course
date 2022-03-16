@@ -48,11 +48,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $user = auth()->user();
-        // Check user is deleting their own post
-        if ($post->user_id !== $user->id) {
-            return redirect('/posts')->with('error', 'Unauthorised Access');
-        }
+        $this->authorize('delete', $post);
 
         // Delete the post
         $post->delete();

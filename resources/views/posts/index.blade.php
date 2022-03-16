@@ -67,13 +67,13 @@
                         @endif
 
                         {{-- Delete Post --}}
-                        <div>
+                        @can('delete', $post)
                             <form action="{{ route('posts.destroy', $post) }}" method="POST" class="mr-1">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-blue-500">Delete</button>
                             </form>
-                        </div>
+                        @endcan
 
                         {{-- Like / Unlike --}}
                         <div class="flex items-center">
