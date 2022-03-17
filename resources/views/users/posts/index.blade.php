@@ -4,13 +4,28 @@
 
     <div class="flex justify-center">
 
-        <div class="w-8/12 bg-white p-6 rounded-lg">
-            <h1 class="text-lg font-bold mb-5">{{ $user->name }}</h1>
+        <div class="w-8/12">
 
-            @foreach($posts as $post)
-                <p>{!! $post->body !!}</p>
-                <hr class="mt-4 mb-4">
-            @endforeach
+            {{-- User's Name --}}
+            <div class="p-6">
+                <h1 class="text-2xl font-medium mb-3">{{ $user->name }}</h1>
+                <p>{{ $posts->count() }} {{ Str::plural('post', $posts->count()) }} | {{ $user->receivedLikes->count() }} {{ Str::plural('like', $user->receivedLikes->count()) }}</p>
+            </div>
+
+            @if(!$posts->isEmpty())
+                <div class="bg-white p-6 rounded-lg">
+
+                    {{-- Loop Through Posts --}}
+                    @foreach($posts as $post)
+                        <x-post :post="$post" />
+                    @endforeach
+
+                    {{-- Pagination Links --}}
+                    {{ $posts->links() }}
+
+                </div>
+            @endif
+
         </div>
 
     </div>
